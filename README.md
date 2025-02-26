@@ -1,15 +1,18 @@
-# HandDAGT: A Denoising Adaptive Graph Transformer for 3D Hand Pose Estimation
+# MDDA: Mamba-Driven Density-Aware Point Cloud Enhancement for 3D Hand Pose Estimation
 
-Wencan Cheng, Eun-ji Kim and Jong Hwan Ko
+[//]: # (Wencan Cheng, Eun-ji Kim and Jong Hwan Ko)
 
-European Conference on Computer Vision (ECCV), 2024
+Yi Wang, Yong Wang, Xin Du, Sheng Yan, Hong Liu and Mengyuan Liu†
+
+Network Architecture
+![image](MDDA.png)
 
 
 ## Prerequisities
 Our model is trained and tested under:
-* Python 3.6.9
+* Python 3.10.15
 * NVIDIA GPU + CUDA CuDNN
-* PyTorch (torch == 1.9.0)
+* PyTorch (torch == 2.1.1)
 * scipy
 * tqdm
 * Pillow
@@ -17,6 +20,8 @@ Our model is trained and tested under:
 * json
 * cv2
 * pycocotools
+* causal_conv1d == 1.0.0
+* mamba_ssm == 1.0.1
 
 1. Prepare dataset 
 
