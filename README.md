@@ -46,6 +46,11 @@ Our model is trained and tested under:
     execute ``` sh train_nyu.sh```
 
 
+
+## Visualization
+![image](vis/DASRT.png)
+![image](vis/real-sample.png)
+
 ## Acknowledgement
 
 We thank [repo](https://github.com/cwc1260/HandDAGT) for the HandDAGT framework.
