@@ -431,6 +431,7 @@ class MLLA(nn.Module):
         self.norm_c3 = norm_layer(256)
         self.norm_c4 = norm_layer(512)
 
+        ################################
         # self.norm_c1 = norm_layer(128)
         # self.norm_c2 = norm_layer(256)
         # self.norm_c3 = norm_layer(512)

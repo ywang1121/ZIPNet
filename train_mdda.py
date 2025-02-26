@@ -24,16 +24,6 @@ import torch.utils.data
 import torch.nn.functional as F
 from torch.autograd import Variable
 
-#
-# seed = 1
-# random.seed(seed)
-# os.environ['PYTHONHASHSEED'] = str(seed)  # 为了禁止hash随机化，使得实验可复现
-# np.random.seed(seed)
-# torch.manual_seed(seed)
-# torch.cuda.manual_seed(seed)
-# torch.cuda.manual_seed_all(seed)  # if you are using multi-GPU.
-# torch.backends.cudnn.benchmark = False
-# torch.backends.cudnn.deterministic = True
 
 
 parser = argparse.ArgumentParser()
@@ -85,7 +75,6 @@ random.seed(opt.manualSeed)
 torch.manual_seed(opt.manualSeed)
 
 if opt.dataset == 'dexycb':
-	# save_dir = os.path.join(opt.save_root_dir, opt.dataset+ '_'+opt.protocal +'_' + opt.model_name+'_lamut+pcmt_6w_'+str(opt.stacks)+'stacks')
 	save_dir = os.path.join(opt.save_root_dir, opt.dataset+ '_'+opt.protocal +'_' + opt.model_name+'_'+str(opt.stacks)+'stacks')
 	from dataloader import loader
 	opt.JOINT_NUM = 21
@@ -93,8 +82,7 @@ elif opt.dataset == 'ho3d':
 	save_dir = os.path.join(opt.save_root_dir, opt.dataset+ '_v2_' + opt.model_name+'_'+ str(opt.stacks)+'stacks')
 	from dataloader import ho3d_loader 
 elif opt.dataset == 'nyu':
-	# save_dir = os.path.join(opt.save_root_dir, opt.dataset+ '_' + opt.model_name+'_PCMT0.4+mlla*(64)_cross_'+ str(opt.stacks)+'stacks')
-	save_dir = os.path.join(opt.save_root_dir, opt.dataset+ '_' + opt.model_name+'_LAMU+DASRT(2)_'+ str(opt.stacks)+'stacks')
+	save_dir = os.path.join(opt.save_root_dir, opt.dataset+ '_' + opt.model_name+'_'+ str(opt.stacks)+'stacks')
 	from dataloader import loader
 	opt.JOINT_NUM = 14
 
@@ -113,42 +101,29 @@ logging.info('======================================================')
 # 1. Load data
 if opt.dataset == 'nyu':
 	train_data = loader.nyu_loader(opt.dataset_path, 'train', aug_para=[10, 0.2, 180], joint_num=opt.JOINT_NUM)
-	# indices = np.random.choice(len(train_data), 30000, replace=False)  # add
-	# train_data_sub = torch.utils.data.Subset(train_data, indices)
+
 elif opt.dataset == 'ho3d':
 	train_data = ho3d_loader.HO3D('train_all', opt.dataset_path, aug_para=[10, 0.2, 180], dataset_version='v2', center_type='joint_mean' )
 elif opt.dataset == 'dexycb' :
 	train_data = loader.DexYCBDataset(opt.protocal, 'train', opt.dataset_path, aug_para=[10, 0.2, 180])
-	# ##################################################################################
-	# indices = np.random.choice(len(train_data), 60000, replace=False) #add
-	# train_data_sub = torch.utils.data.Subset(train_data, indices)
-	# ############################################################################
+
 train_dataloader = torch.utils.data.DataLoader(train_data, batch_size=opt.batchSize,
 										shuffle=True, num_workers=int(opt.workers), pin_memory=False)
-# train_dataloader = torch.utils.data.DataLoader(train_data_sub, batch_size=opt.batchSize,
-# 										shuffle=True, num_workers=int(opt.workers), pin_memory=False)
+
 
 if opt.dataset == 'dexycb' :
 	test_data = loader.DexYCBDataset(opt.protocal, 'test', opt.dataset_path)
-	# ############################################################################
-	# indices = np.random.choice(len(test_data), 5000, replace=False)
-	# test_data_sub = torch.utils.data.Subset(test_data, indices)
-	# ##########################################################################
 elif opt.dataset == 'ho3d':
 	test_data = ho3d_loader.HO3D('test', opt.dataset_path, dataset_version='v2', center_type='joint_mean' )
 elif opt.dataset == 'nyu':
 	test_data = loader.nyu_loader(opt.dataset_path, 'test', joint_num=opt.JOINT_NUM)
-	# indices = np.random.choice(len(test_data), 3000, replace=False)
-	# test_data_sub = torch.utils.data.Subset(test_data, indices)
+
 
 test_dataloader = torch.utils.data.DataLoader(test_data, batch_size=opt.batchSize,
 										  shuffle=False, num_workers=int(opt.workers), pin_memory=False)
-# test_dataloader = torch.utils.data.DataLoader(test_data_sub, batch_size=opt.batchSize,
-# 										  shuffle=False, num_workers=int(opt.workers), pin_memory=False)
 
 
 print('#Train data:', len(train_data), '#Test data:', len(test_data))
-# print('#Train data:', len(train_data_sub), '#Test data:', len(test_data_sub))
 print (opt)
 
 # 2. Define model, loss and optimizer
@@ -240,15 +215,12 @@ for epoch in range(opt.start_epoch, opt.nepoch):
 	torch.cuda.synchronize()
 	timer = time.time() - timer
 	timer = timer / len(train_data)
-	# timer = timer / len(train_data_sub) #add
 	print('==> time to learn 1 sample = %f (ms)' %(timer*1000))
 
 	# print mse
 	train_mse = train_mse / len(train_data)
-	# train_mse = train_mse / len(train_data_sub) #add
 
 	print('mean-square error of 1 sample: %f, #train_data = %d' %(train_mse, len(train_data)))
-	# print('mean-square error of 1 sample: %f, #train_data = %d' %(train_mse, len(train_data_sub))) #add
 
 	if (epoch % 10) == 0:
 		torch.save(model.state_dict(), '%s/netR_%d.pth' % (save_dir, epoch))
@@ -301,16 +273,15 @@ for epoch in range(opt.start_epoch, opt.nepoch):
 	torch.cuda.synchronize()
 	timer = time.time() - timer
 	timer = timer / len(test_data)
-	# timer = timer / len(test_data_sub) #add
+
 	print('==> time to learn 1 sample = %f (ms)' %(timer*1000))
 	# print mse
 	test_mse = test_mse / len(test_data)
-	# test_mse = test_mse / len(test_data_sub) #add
+
 	print('mean-square error of 1 sample: %f, #test_data = %d' %(test_mse, len(test_data)))
-	# print('mean-square error of 1 sample: %f, #test_data = %d' %(test_mse, len(test_data_sub))) #add
+
 	test_wld_err = test_wld_err / len(test_data)
-	# test_wld_err = test_wld_err / len(test_data_sub) #add
+
 	print('average estimation error in world coordinate system: %f (mm)' %(test_wld_err))
 	# log
 	logging.info('Epoch#%d: train error=%e, train wld error = %f mm, test error=%e, test wld error = %f mm, best wld error = %f' %(epoch, train_mse, train_mse_wld, test_mse, test_wld_err, test_best_error / len(test_data)))
-	# logging.info('Epoch#%d: train error=%e, train wld error = %f mm, test error=%e, test wld error = %f mm, best wld error = %f' %(epoch, train_mse, train_mse_wld, test_mse, test_wld_err, test_best_error / len(test_data_sub))) #add
