@@ -12,7 +12,7 @@ Network Architecture
 Our model is trained and tested under:
 * Python 3.10.15
 * NVIDIA GPU + CUDA CuDNN
-* PyTorch (torch == 2.1.1)
+* PyTorch (torch == 2.1.1+CUDA12.1)
 * scipy
 * tqdm
 * Pillow
@@ -48,4 +48,4 @@ Our model is trained and tested under:
 
 ## Acknowledgement
 
-We thank [repo](https://github.com/PengfeiRen96/IPNet) for the image-point cloud framework.
+We thank [repo](https://github.com/cwc1260/HandDAGT) for the HandDAGT framework.
