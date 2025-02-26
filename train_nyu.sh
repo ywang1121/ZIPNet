@@ -1,0 +1,1 @@
+python3 train_dagt.py --gpu 0 --dataset nyu --dataset_path ./data/nyu --stacks 3

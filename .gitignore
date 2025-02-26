@@ -1,0 +1,11 @@
+
+venv/
+*.zip
+results/
+.idea
+pointnet2
+Pointnet2_PyTorch-master
+pretrained_model
+vis_tools.py
+vis_tools_3.py
+cfgs/
