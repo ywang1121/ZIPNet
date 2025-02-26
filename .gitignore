@@ -9,3 +9,4 @@ pretrained_model
 vis_tools.py
 vis_tools_3.py
 cfgs/
+__pycache__
