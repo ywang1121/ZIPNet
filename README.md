@@ -25,7 +25,7 @@ Our model is trained and tested under:
 
 1. Prepare dataset 
 
-    please download the NYU Hand dataset
+    please download the [NYU](https://jonathantompson.github.io/NYU_Hand_Pose_Dataset.htm) Hand dataset
 
 2. Install PointNet++ CUDA operations
 
