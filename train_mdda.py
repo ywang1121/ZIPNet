@@ -59,7 +59,7 @@ parser.add_argument('--protocal', type=str, default = 's0',  help='evaluation se
 
 parser.add_argument('--test_path', type=str, default = '../dataset',  help='model name for training resume')
 
-parser.add_argument('--model_name', type=str, default = 'handdagt',  help='')
+parser.add_argument('--model_name', type=str, default = 'handmdda',  help='')
 parser.add_argument('--gpu', type=str, default = '0',  help='gpu')
 
 opt = parser.parse_args()
