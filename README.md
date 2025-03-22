@@ -1,8 +1,6 @@
 # MDDA: Mamba-Driven Density-Aware Point Cloud Enhancement for 3D Hand Pose Estimation
-
 Network Architecture
 ![image](MDDA.png)
-
 
 ## Prerequisities
 Our model is trained and tested under:
@@ -46,6 +44,8 @@ Our model is trained and tested under:
 ## Visualization
 ![image](vis/DASRT.png)
 ![image](vis/real-sample.png)
+![image](vis/dexycb_vis.png)
+
 
 ## Acknowledgement
 
