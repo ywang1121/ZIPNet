@@ -1,9 +1,5 @@
 # MDDA: Mamba-Driven Density-Aware Point Cloud Enhancement for 3D Hand Pose Estimation
 
-[//]: # (Wencan Cheng, Eun-ji Kim and Jong Hwan Ko)
-
-Yi Wang, Yong Wang, Xin Du, Sheng Yan, Hong Liu and Mengyuan Liu†
-
 Network Architecture
 ![image](MDDA.png)
 
