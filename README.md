@@ -44,7 +44,6 @@ Our model is trained and tested under:
 ![image](vis/real-sample.png)
 ![image](vis/dexycb_vis.png)
 
-
 ## Acknowledgement
 
 We thank [repo](https://github.com/cwc1260/HandDAGT) for the HandDAGT framework.
