@@ -1,4 +1,4 @@
-# MDDA: Mamba-Driven Density-Aware Point Cloud Enhancement for 3D Hand Pose Estimation
+# MDDA: Mamba-Driven Density-Aware Point Cloud Balancing for 3D Hand Pose Estimation
 Network Architecture
 ![image](MDDA.png)
 
