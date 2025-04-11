@@ -1,6 +1,6 @@
-# MDDA: Mamba-Driven Density-Aware Point Cloud Balancing for 3D Hand Pose Estimation
+# ZIPNet: Zoom Image-Point Network for 3D Hand Pose Estimation
 Network Architecture
-![image](MDDA.png)
+![image](vis/ZIPNet.png)
 
 ## Prerequisities
 Our model is trained and tested under:
