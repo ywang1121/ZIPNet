@@ -1,5 +1,6 @@
 # ZIPNet: Zoom Image-Point Network for 3D Hand Pose Estimation
 Network Architecture
+
 ![image](vis/ZIPNet.png)
 
 ## Prerequisities
